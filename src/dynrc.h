@@ -1,7 +1,7 @@
-#ifndef DOVE_LIB
-#define DOVE_LIB
+#ifndef DYNAMIC_RUNTIME_C
+#define DYNAMIC_RUNTIME_C
 
-#define _VER "0.0.6"
+#define _VER "0.0.7"
 #define fn_copy compat_buf_copy
 #define DYN_SIZE (int)sizeof(dyn_t)
 #define NIL (void*)0
@@ -65,8 +65,11 @@ int compat_buf_clear(char* buf, uint_t size);
 // Core function
 dyn_t* dyn_str(char* buf, char* src, uint_t len);
 int dyn_cmp(dyn_t* d1, dyn_t* d2);
-dyn_t** list_new(char* mt, uint_t mt_len, char* buf, uint_t len, uint_t blk_size, uint_t idx);
-dyn_t* dyn_new(char* buf, void* src, dyn_tag t);
+
+#define new_static_buf(name,size) \
+	char name##_buf[size] = {0}; \
+	buf_t* name = (buf_t*) name##_buf; \
+	(name)->size = size
 
 #define cif(stat) if ( stat >= COMPAT_FALSE && stat <= ENO_MEM )
 #define is_num(x) ( x >= '0' && x <= '9' )

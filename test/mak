@@ -1,8 +1,0 @@
-#!/bin/sh
-
-SRC=../src
-CFLAGS="-fPIC -shared -Werror -Wall -Wextra -O3 -ffreestanding -nostdinc -nostdlib"
-
-rm *.o
-
-cc -I../src ../src/*.c $CFLAGS -o libd.so

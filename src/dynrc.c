@@ -1,4 +1,4 @@
-#include "dove.h"
+#include "dynrc.h"
 
 buf_t* new_buf(char* b,uint_t size) {
 	if ( b == NIL ) return NIL;
