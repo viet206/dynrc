@@ -9,7 +9,7 @@ bạn có thể cài đặt thông qua script trung gian `mak`
 sh mak build
 ```
 # Hướng dẫn
-Bạn có thể tìm thấy các hướng dẫn trong thư mục `man/` của dự án
+Bạn có thể tìm thấy các hướng dẫn trong thư mục [manual](https://github.com/viet206/dynrc/tree/main/man) của dự án
 
 ## Code mẫu
 ```c
@@ -19,7 +19,7 @@ Bạn có thể tìm thấy các hướng dẫn trong thư mục `man/` của d�
 int main() {
     buf_static_init(buf0,32);
 
-    dyn* d = dyn_new(buf0),"Hello World",STR_LIT);
+    dyn* d = dyn_new(buf0,"Hello World",STR_LIT);
 
     puts(d->s);
 }
