@@ -2,28 +2,25 @@
 Là từ viết tắt của "Dynamic Runtime C" . Thư viện này được viết như 1 phần mở rộng của C , hỗ trợ lập trình 1 cách an toàn , linh hoạt , và ngăn chặn phần lớn các lỗi xảy ra trong thời gian chạy .
 # cài đặt
 - Yêu cầu:
-    - 1 trình thông dịch Lua
+    - 1 môi trường Linux ( hiện tain chỉ hỗ trợ biên dịch trên Linux )
     - 1 trình biên dịch C ( không cần libc kèm theo )
-bạn có thể cài đặt thông qua script trung gian `mak.lua`
-```lua
-lua mak.lua
-```
-Để biên dịch ra thư viện:
-```lua
-lua mak.lua -b
+bạn có thể cài đặt thông qua script trung gian `mak`
+```sh
+sh mak build
 ```
 # Hướng dẫn
 ⚠️  Lưu ý : Chưa có tài liệu . bạn có thể đóng góp cho dự án
 Code mẫu :
 ```c
 #include "dynrc.h"
+#include <stdio.h>
 
 int main() {
-    new_static_buf(my,32);
+    buf_static_init(buf0,32);
 
-    dyn_t* d = dyn_str(my,"Hello World",20);
+    dyn* d = dyn_new(buf0),"Hello World",STR_LIT);
 
-    puts(d->s.p);
+    puts(d->s);
 }
 ```
 # Giấy phép
