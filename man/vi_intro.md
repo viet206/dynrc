@@ -13,7 +13,7 @@ Sau đó ta khởi tạo 1 Object dyn* với 3 kiểu hàm tạo hỗ trợ:
 - PTR : con trỏ void*
 ```c
 	// dyn* dyn_new(buffer,data,tag);
-	dyn* d = dyn_new(buf0,"Hello World",tag);
+	dyn* d = dyn_new(buf0,"Hello World",STR_LIT);
 ```
 ## Truy cập dyn*
 Theo cấu trúc , các thành viên lưu trữ dữ liệu là :
