@@ -1,4 +1,4 @@
-#include "dove.h"
+#include "dynrc.h"
 
 int compat_str_cmp(char* d, char* d1, uint_t n) {
         if ( d == NIL || d1 == NIL || n == 0 ) return COMPAT_FALSE;

@@ -13,8 +13,8 @@ local msg = [[
 local command = "%s %s %s %s"
 local cc = "gcc"
 local cf = "-Werror -Wall -Wextra -shared -fPIC"
-local src = "../src/*.c -I../src"
-local target = "libut.so"
+local src = "../src/compat.c -I../src -I../src/hal ../src/hal/hal_libc.c"
+local target = "-o libdrc.so"
 
 if arg[1] == nil then
 	print(string.format(msg,arg[0]))
