@@ -15,7 +15,7 @@ typedef enum {
 }dtag; // data tag
 
 typedef struct {
-	dyn_tag tag;
+	dtag tag;
 	union {
 		int i;
 		char* s;
@@ -24,7 +24,7 @@ typedef struct {
 }dyn;
 
 typedef struct {
-	uint_t size;
+	uint_t cur;
 	uint_t cap;
 	char data[];
 }buf;
@@ -32,13 +32,25 @@ typedef struct {
 typedef enum {
 	ENO_SIZE,
 	UNDEFINED_TAG,
-	BUFFER_NIL
+	BUFFER_NIL,
+	TAG_NEQ,
+	PTR_NIL
 }sig;
 
-buf* buf_init(char* raw,uint_t size);
-sig buf_clear(buf* b);
-sig buf_copy(buf* b,buf* b1);
+#define ptr(value) (void*)value
+
+#define buf_free(buf) buf == ptr(0)
+#define dyn_free(dyn) dyn == ptr(0)
+
+#define buf_init_static(name,size) \
+	char buf_##name[size] = {0}; \
+	buf* name = (buf*) buf_##name; \
+	name->cap = size; \
+	name->cur = 0;
+
+#define dyn_tagof(dyn) dyn->tag
+
 dyn* dyn_init(buf* b,char* src,dtag tag);
-dtag dyn_tagof(dyn* d);
+sig dyn_cmp(dyn* d,dyn* d1);
 
 #endif
