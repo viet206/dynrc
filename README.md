@@ -9,8 +9,9 @@ bạn có thể cài đặt thông qua script trung gian `mak`
 sh mak build
 ```
 # Hướng dẫn
-⚠️  Lưu ý : Chưa có tài liệu . bạn có thể đóng góp cho dự án
-Code mẫu :
+Bạn có thể tìm thấy các hướng dẫn trong thư mục `man/` của dự án
+
+## Code mẫu
 ```c
 #include "dynrc.h"
 #include <stdio.h>
