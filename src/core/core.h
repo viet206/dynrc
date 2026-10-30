@@ -1,6 +1,11 @@
 #ifndef CORE
 #define CORE
 
+#include "compat/compat.h"
+#include "hal/hal.h"
+
+#define AUTO_CHECKER TRUE
+
 typedef unsigned int uint_t;
 
 typedef union {
@@ -65,10 +70,7 @@ dyn* dyn_init(buf* b,char* src,dtag tag);
 sig dyn_cmp(dyn* d,dyn* d1);
 
 dyn* str_init(buf* b,char* src,uint_t range);
-dyn* str_sub(dyn* d);
-int str_2int(dyn* d);
-
-arg* arg_init(buf* b);
-sig arg_push(arg* a,dyn* d);
+dyn* str_cmp(dyn* d,dyn* d1);
+int str_to_int(dyn* d);
 
 #endif

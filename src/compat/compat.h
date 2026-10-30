@@ -6,7 +6,7 @@
 #define FALSE 0
 
 typedef unsigned int uint_t;
-typedef unsigned long long ull_t;
+typedef unsigned long long usize_t;
 typedef unsigned short uhalf_t;
 
 int compat_str_cmp(char* d, char* d1, uint_t n);

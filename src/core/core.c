@@ -11,7 +11,12 @@
 		return ( d->member == d1->member )
 
 dyn* dyn_init(buf* b,char* src,dtag tag) {
-	if ( b == ptr(0) && src == ptr(0) ) return ptr(0);
+	if ( b == ptr(0) && src == ptr(0) ) {
+		#if AUTO_CHECKER == TRUE
+			hal_puts("dyn_init : NULL input pointer\n");
+		#endif
+		return ptr(0);
+	}
 
 	// make dyn
 	dyn* d = (dyn*) b->data;
@@ -21,6 +26,9 @@ dyn* dyn_init(buf* b,char* src,dtag tag) {
 		add_type(PTR,p,(void*));
 		add_type(STR_LIT,s,(char*));
 		default:
+			#if AUTO_CHECKER == TRUE
+				hal_puts("dyn_init : Tag not found\n");
+			#endif
 			return ptr(UNDEFINED_TAG);
 	}
 	return d;

@@ -4,7 +4,7 @@ LC_OPT="$1"
 
 TG_NAME="libd.so"
 
-SRC="../src/core/*.c ../src/compat/compat.c ../src/hal/*.c"
+SRC="../src/core/*.c ../src/compat/compat.c ../src/main.c ../src/hal/*.c"
 
 if [ -z $LC_OPT ]; then
 exit 1
@@ -12,7 +12,7 @@ fi
 
 case $LC_OPT in
 	build)
-		cc $SRC -shared -fPIC -I../src -o $TG_NAME
+		cc $SRC -shared -fPIC -O3 -I../src -o $TG_NAME
 		;;
 	*)
 		echo "E"
