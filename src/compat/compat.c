@@ -1,19 +1,19 @@
 #include "dynrc.h"
 
 int compat_str_cmp(char* d, char* d1, uint_t n) {
-        if ( d == NIL || d1 == NIL || n == 0 ) return COMPAT_FALSE;
+        if ( d == NIL || d1 == NIL || n == 0 ) return FALSE;
 
         for ( uint_t i = 0 ; i < n ; ++i ) {
-                if ( *d != *d1 ) return COMPAT_FALSE;
+                if ( *d != *d1 ) return FALSE;
                 if ( *d == '\0' && *d1 == '\0' ) break;
                 ++d;
                 ++d1;
         }
-        return COMPAT_TRUE;
+        return TRUE;
 }
 
 int compat_buf_clear(char* buf, uint_t size) {
-        if ( buf == NIL || size == 0 ) return COMPAT_FALSE;
+        if ( buf == NIL || size == 0 ) return FALSE;
 
         usize_t* u = (usize_t*) buf;
         uhalf_t* h = (uhalf_t*) buf;
@@ -44,14 +44,14 @@ int compat_buf_clear(char* buf, uint_t size) {
                 *c = 0;
         }
 
-        return COMPAT_TRUE;
+        return TRUE;
 }
 
 int compat_buf_copy(char* dst, char* src, uint_t size) {
-        if ( dst == NIL ) return COMPAT_FALSE;
-        if ( src == NIL ) return COMPAT_FALSE;
-        if ( size == 0 ) return COMPAT_FALSE;
-
+        if ( dst == NIL ) return FALSE;
+        if ( src == NIL ) return FALSE;
+        if ( size == 0 ) return FALSE;
+        
         usize_t* d0 = (usize_t*) dst;
         usize_t* d1 = (usize_t*) src;
         uhalf_t* u0 = (uhalf_t*) dst;
@@ -86,7 +86,7 @@ int compat_buf_copy(char* dst, char* src, uint_t size) {
                 *c0 = *c1;
         }
 
-        return COMPAT_TRUE;
+        return TRUE;
 }
 
 uint_t compat_str_len(char* s, uint_t range) {

@@ -29,6 +29,12 @@ typedef struct {
 	char data[];
 }buf;
 
+typedef struct {
+	uint_t elm;
+	uint_t cur;
+	dyn* d;
+}arg;
+
 typedef enum {
 	ENO_SIZE,
 	UNDEFINED_TAG,
@@ -38,9 +44,7 @@ typedef enum {
 }sig;
 
 #define ptr(value) (void*)value
-
-#define buf_free(buf) buf == ptr(0)
-#define dyn_free(dyn) dyn == ptr(0)
+#define obj_free(obj) obj = ptr(0)
 
 #define buf_init_static(name,size) \
 	char buf_##name[size] = {0}; \
@@ -50,7 +54,21 @@ typedef enum {
 
 #define dyn_tagof(dyn) dyn->tag
 
+#define is_num(num) ( num >= '0' && num <= '9' )
+
+// New API for Next Version
+
+sig buf_clear(buf* b);
+sig buf_copy(buf* b,buf* b1);
+
 dyn* dyn_init(buf* b,char* src,dtag tag);
 sig dyn_cmp(dyn* d,dyn* d1);
+
+dyn* str_init(buf* b,char* src,uint_t range);
+dyn* str_sub(dyn* d);
+int str_2int(dyn* d);
+
+arg* arg_init(buf* b);
+sig arg_push(arg* a,dyn* d);
 
 #endif

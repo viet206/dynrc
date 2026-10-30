@@ -4,7 +4,7 @@ LC_OPT="$1"
 
 TG_NAME="libd.so"
 
-SRC="../src/core/*.c ../src/hal/*.c"
+SRC="../src/core/*.c ../src/compat/compat.c ../src/hal/*.c"
 
 if [ -z $LC_OPT ]; then
 exit 1
