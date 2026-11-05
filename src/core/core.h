@@ -1,76 +1,45 @@
 #ifndef CORE
 #define CORE
 
-#include "compat/compat.h"
+/* Quy ước đặt tên
+ * + [action]_[name] cho hàm
+ * + [name]_[noun] cho biến
+*/
+
 #include "hal/hal.h"
+#include "compat/compat.h"
+#include "trace.h"
 
-#define AUTO_CHECKER TRUE
+#define ENABLE_TRACE TRUE
 
-typedef unsigned int uint_t;
-
-typedef union {
-	char* s;
-	int* i;
-}ptr;
-
-typedef enum {
-	INT,
-	STR_LIT,
-	PTR
-}dtag; // data tag
+typedef unsigned char byte;
+typedef unsigned long long word8;
+typedef unsigned short word2;
+typedef unsigned int word4;
 
 typedef struct {
-	dtag tag;
+	enum {
+		PTR,
+		INT,
+		UINT,
+		STR_LIT
+	};
 	union {
+		word4 u;
 		int i;
+		void* v;
 		char* s;
-		void* p;
 	};
 }dyn;
 
 typedef struct {
-	uint_t cur;
-	uint_t cap;
-	char data[];
+	word4 cur;
+	word4 cap;
+	byte raw[];
 }buf;
 
-typedef struct {
-	uint_t elm;
-	uint_t cur;
-	dyn* d;
-}arg;
-
-typedef enum {
-	ENO_SIZE,
-	UNDEFINED_TAG,
-	BUFFER_NIL,
-	TAG_NEQ,
-	PTR_NIL
-}sig;
-
-#define ptr(value) (void*)value
-#define obj_free(obj) obj = ptr(0)
-
-#define buf_init_static(name,size) \
-	char buf_##name[size] = {0}; \
-	buf* name = (buf*) buf_##name; \
-	name->cap = size; \
-	name->cur = 0;
-
-#define dyn_tagof(dyn) dyn->tag
-
-#define is_num(num) ( num >= '0' && num <= '9' )
-
-// New API for Next Version
-
-sig buf_clear(buf* b);
-sig buf_copy(buf* b,buf* b1);
-
-dyn* dyn_init(buf* b,char* src,dtag tag);
-sig dyn_cmp(dyn* d,dyn* d1);
-
-dyn* str_init(buf* b,char* src,uint_t range);
-dyn* str_cmp(dyn* d,dyn* d1);
-int str_to_int(dyn* d);
+buf* init_buf(byte* b,word4 cap);
+dyn* init_dyn(buf* b,byte* src,word4 tag);
+dyn** init_list(buf* b,word4 elm);
 
 #endif
