@@ -1,4 +1,4 @@
-#include "dynrc.h"
+#include "dynrc/dynrc.h"
 #include <stdio.h>
 
 int main() {
