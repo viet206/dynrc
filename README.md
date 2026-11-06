@@ -1,17 +1,26 @@
 # Dynrc
-Là từ viết tắt của "Dynamic Runtime C" . Thư viện này được viết như 1 phần mở rộng của C , hỗ trợ lập trình 1 cách an toàn , linh hoạt , và ngăn chặn phần lớn các lỗi xảy ra trong thời gian chạy .
-# cài đặt
-- Yêu cầu:
-    - 1 môi trường Linux ( hiện tain chỉ hỗ trợ biên dịch trên Linux )
-    - 1 trình biên dịch C ( không cần libc kèm theo )
-bạn có thể cài đặt thông qua script trung gian `mak`
+
+Dynrc là viết tắt của “Dynamic Runtime C”. Đây là thư viện mở rộng cho C, hướng đến việc hỗ trợ lập trình an toàn và linh hoạt.
+
+## Cài đặt
+
+Yêu cầu:
+
+- Môi trường Linux (hiện tại chỉ hỗ trợ biên dịch trên Linux).
+- Trình biên dịch C (không cần libc đi kèm).
+
+Bạn có thể cài đặt thông qua script trung gian `mak`:
+
 ```sh
 sh mak build
 ```
-# Hướng dẫn
-Bạn có thể tìm thấy các hướng dẫn trong thư mục [manual](https://github.com/viet206/dynrc/tree/main/man) của dự án
 
-## Code mẫu
+## Hướng dẫn
+
+Bạn có thể tìm thấy các hướng dẫn trong thư mục [`man`](https://github.com/viet206/dynrc/tree/main/man) của dự án.
+
+### Code mẫu
+
 ```c
 #include "dynrc.h"
 #include <stdio.h>
@@ -24,5 +33,7 @@ int main() {
     puts(d->s);
 }
 ```
-# Giấy phép
-Dự án được cấp phép theo giấy phép MIT . Xem LICENSE để biết thêm chi tiết
+
+## Giấy phép
+
+Dự án được cấp phép theo giấy phép MIT. Xem [LICENSE](LICENSE) để biết thêm chi tiết.
