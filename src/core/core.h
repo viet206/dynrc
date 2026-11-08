@@ -8,11 +8,13 @@
 
 #include "hal/hal.h"
 #include "compat/compat.h"
-#include "trace.h"
 
 #define ENABLE_TRACE TRUE
 #define DYN_SIZE (int)sizeof(dyn)
 #define BUFFER_SIZE (int)sizeof(buf)
+
+#define ENABLE_LOG TRUE
+#define ENABLE_TRACE TRUE
 
 typedef unsigned char byte;
 typedef unsigned long long word8;
@@ -45,6 +47,13 @@ typedef struct {
 	word4 cap;
 	byte raw[];
 }buf;
+
+enum {
+	SIGNAL_SUCCESS,
+	SIGNAL_FAILURE,
+	SIGNAL_UNDEF_TAG,
+	SIGNAL_NULL
+};
 
 buf* buf_init(char* b,word4 cap);
 
